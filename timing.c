@@ -1,11 +1,42 @@
-#include <sys/time.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   timing.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: itomescu <itomescu@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/24 08:03:47 by itomescu          #+#    #+#             */
+/*   Updated: 2022/01/24 13:03:28 by itomescu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-long long unsigned int	get_current_timestamp(void)
+#include "philo.h"
+
+long	get_time(void)
 {
-	struct timeval			current_time;
-	long long unsigned int	timestamp;
+	struct timeval		current_time;
+	long	timestamp;
 
 	gettimeofday(&current_time, NULL);
 	timestamp = ((current_time.tv_sec * 1000) + (current_time.tv_usec / 1000));
 	return (timestamp);
+}
+
+void	*keep_track(void *p)
+{
+	t_data *dt;
+
+	dt = (t_data *)p;
+	while (dt->dead == false && dt->full_philos < dt->total)
+		dt->current_time = get_time();	
+	return (NULL);
+}
+
+void	delay(int milisecs)
+{
+	long curr;
+
+	curr = get_time();
+	while (get_time() < milisecs + curr)
+		;
 }
