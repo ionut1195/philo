@@ -6,7 +6,7 @@
 /*   By: itomescu <itomescu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 10:30:07 by itomescu          #+#    #+#             */
-/*   Updated: 2022/01/27 16:30:48 by itomescu         ###   ########.fr       */
+/*   Updated: 2022/01/27 11:29:44 by itomescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_philo
 	int				left;
 	int				right;
 	int				meals_eaten;
+	long			birthdate;
 	long			will_die;
 	struct s_data	*pt;
 	pthread_t		thread;
@@ -31,10 +32,8 @@ typedef struct s_philo
 } t_philo;
 typedef struct s_mutex
 {
-	int				last_user;
-	pthread_mutex_t	mtx;
+	
 } t_mutex;
-
 typedef struct s_data
 {
 	int				meals;
@@ -46,11 +45,10 @@ typedef struct s_data
 	long			current_time;
 	t_bool			meals_param;
 	t_bool			dead;
-	t_bool			over;
 	pthread_t		time_tracker;
 	t_philo 		*philos;
-	pthread_mutex_t	print_mtx;
-	t_mutex			*forks;
+	pthread_mutex_t	function_access;
+	pthread_mutex_t	*forks;
 	pthread_mutex_t dead_mtx;
 } t_data;
 
@@ -58,5 +56,4 @@ long	get_time(void);
 int		ft_atoi(const char *nptr);
 void	*keep_track(void *p);
 void	waiting(int milisecs);
-void	print_action(t_philo *p,t_data *d, char *st, pthread_mutex_t *m);
 #endif

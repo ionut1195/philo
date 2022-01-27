@@ -6,7 +6,7 @@
 /*   By: itomescu <itomescu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 08:03:47 by itomescu          #+#    #+#             */
-/*   Updated: 2022/01/24 13:03:28 by itomescu         ###   ########.fr       */
+/*   Updated: 2022/01/25 09:21:58 by itomescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	*keep_track(void *p)
 	return (NULL);
 }
 
-void	delay(int milisecs)
+void	waiting(int milisecs)
 {
 	long curr;
 
