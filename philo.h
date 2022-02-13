@@ -21,8 +21,8 @@ typedef enum s_bool { false, true } t_bool;
 typedef struct s_philo
 {
 	int				id;
-	int				left;
-	int				right;
+	int				even;
+	int				odd;
 	int				meals_eaten;
 	long			will_die;
 	struct s_data	*pt;
@@ -44,12 +44,15 @@ typedef struct s_data
 	long			t_eat;
 	long			t_sleep;
 	long			current_time;
+	long			start_time;
 	t_bool			meals_param;
 	t_bool			dead;
 	t_bool			over;
 	pthread_t		time_tracker;
+	pthread_t		death_tracker;
 	t_philo 		*philos;
 	pthread_mutex_t	print_mtx;
+	pthread_mutex_t	start_mtx;
 	t_mutex			*forks;
 	pthread_mutex_t dead_mtx;
 } t_data;
@@ -57,6 +60,7 @@ typedef struct s_data
 long	get_time(void);
 int		ft_atoi(const char *nptr);
 void	*keep_track(void *p);
-void	waiting(int milisecs);
-void	print_action(t_philo *p,t_data *d, char *st, pthread_mutex_t *m);
+void	waiting(int milisecs, t_data *d);
+void	print_action(t_philo *p,t_data *d, char *st);
+void	*monitor_death(void *v);
 #endif
