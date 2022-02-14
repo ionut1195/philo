@@ -1,36 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   atoi.c                                             :+:      :+:    :+:   */
+/*   input_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: itomescu <itomescu@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/17 12:00:55 by itomescu          #+#    #+#             */
-/*   Updated: 2022/02/13 13:53:40 by itomescu         ###   ########.fr       */
+/*   Created: 2022/02/13 13:52:41 by itomescu          #+#    #+#             */
+/*   Updated: 2022/02/14 13:33:37 by itomescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	ft_atoi(const char *nptr)
+static int	is_number(char *p)
 {
-	int	result;
-	int	sign;
-	int	itr;
+	int	i;
 
-	sign = 1;
-	itr = 0;
-	result = 0;
-	while ((nptr[itr] >= 7 && nptr[itr] <= 13) || nptr[itr] == ' ')
-		itr++;
-	if (nptr[itr] == '-')
-		sign = -1;
-	if (nptr[itr] == '-' || nptr[itr] == '+')
-		itr++;
-	while (nptr[itr] >= '0' && nptr[itr] <= '9' && nptr[itr])
+	i = 0;
+	while (p[i])
 	{
-		result = result * 10 + (nptr[itr] - '0');
-		nptr++;
+		if (p[i] < '0' || p[i] > '9')
+			return (0);
+		i++;
 	}
-	return (sign * result);
+	return (1);
+}
+
+int	invalid_input(int argc, char *argv[])
+{
+	int	i;
+
+	i = 1;
+	while (i < argc)
+	{
+		if (!is_number(argv[i]))
+			return (1);
+		i++;
+	}
+	return (0);
 }

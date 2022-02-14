@@ -3,21 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itomescu <itomescu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: itomescu <itomescu@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 10:30:07 by itomescu          #+#    #+#             */
-/*   Updated: 2022/01/27 16:30:48 by itomescu         ###   ########.fr       */
+/*   Updated: 2022/02/14 13:36:53 by itomescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILOSOPHERS_H
-# define PHILOSOPHERS_H
+#ifndef PHILO_H
+# define PHILO_H
 # include <pthread.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <sys/time.h>
-typedef enum s_bool { false, true } t_bool;
+
+typedef enum s_bool { false, true }	t_bool;
+typedef enum s_action {Think , Sleep, Eat, Full, Dead, Fork}	t_action;
 typedef struct s_philo
 {
 	int				id;
@@ -28,12 +30,13 @@ typedef struct s_philo
 	struct s_data	*pt;
 	pthread_t		thread;
 	t_bool			is_full;
-} t_philo;
+}	t_philo;
+
 typedef struct s_mutex
 {
 	int				last_user;
 	pthread_mutex_t	mtx;
-} t_mutex;
+}	t_mutex;
 
 typedef struct s_data
 {
@@ -50,17 +53,28 @@ typedef struct s_data
 	t_bool			over;
 	pthread_t		time_tracker;
 	pthread_t		death_tracker;
-	t_philo 		*philos;
+	t_philo			*philos;
 	pthread_mutex_t	print_mtx;
 	pthread_mutex_t	start_mtx;
 	t_mutex			*forks;
-	pthread_mutex_t dead_mtx;
-} t_data;
+	pthread_mutex_t	dead_mtx;
+}	t_data;
 
 long	get_time(void);
+void	*do_shit(void *shit);
 int		ft_atoi(const char *nptr);
 void	*keep_track(void *p);
 void	waiting(int milisecs, t_data *d);
-void	print_action(t_philo *p,t_data *d, char *st);
+void	print_action(t_philo *p, t_data *d, t_action act);
 void	*monitor_death(void *v);
+// input_check.c
+int		invalid_input(int argc, char *argv[]);
+// utils.c
+void	print_action(t_philo *p, t_data *d, t_action act);
+void	cleanup(t_data *d);
+// inits.c
+void	init_philos(t_data *d, long will_die);
+void	start_ph(t_data *d);
+void	init_mutexes(t_data *d);
+void	init_data(t_data *d, int argc, char *argv[]);
 #endif

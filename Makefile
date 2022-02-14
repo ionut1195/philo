@@ -1,7 +1,7 @@
 NAME = philo
 CC = gcc
-SRCS = atoi.c philo.c timing.c
-CFLAGS = -Wall -Werror -Wextra -g
+SRCS = atoi.c philo.c timing.c inits.c input_check.c utils.c
+CFLAGS = -Wall -Werror -Wextra
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
