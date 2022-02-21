@@ -6,7 +6,7 @@
 /*   By: itomescu <itomescu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 11:58:30 by itomescu          #+#    #+#             */
-/*   Updated: 2022/02/21 12:05:18 by itomescu         ###   ########.fr       */
+/*   Updated: 2022/02/21 21:36:49 by itomescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ static void	dine(t_philo *ph, t_data *dt)
 	}
 	pthread_mutex_unlock(&(dt->forks[ph->even].mtx));
 	pthread_mutex_unlock(&(dt->forks[ph->odd].mtx));
-	dt->forks[ph->even].last_user = ph->id;
-	dt->forks[ph->odd].last_user = ph->id;
 }
 
 static void	sleep_think(t_philo *philo)
