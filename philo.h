@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itomescu <itomescu@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: itomescu <itomescu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 10:30:07 by itomescu          #+#    #+#             */
-/*   Updated: 2022/02/14 13:36:53 by itomescu         ###   ########.fr       */
+/*   Updated: 2022/02/21 11:51:49 by itomescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <unistd.h>
 # include <sys/time.h>
 
-typedef enum s_bool { false, true }	t_bool;
+typedef enum s_bool { FALSE, TRUE }	t_bool;
 typedef enum s_action {Think , Sleep, Eat, Full, Dead, Fork}	t_action;
 typedef struct s_philo
 {
@@ -60,12 +60,13 @@ typedef struct s_data
 	pthread_mutex_t	dead_mtx;
 }	t_data;
 
-long	get_time(void);
 void	*do_shit(void *shit);
 int		ft_atoi(const char *nptr);
+void	print_action(t_philo *p, t_data *d, t_action act);
+// timing.c
 void	*keep_track(void *p);
 void	waiting(int milisecs, t_data *d);
-void	print_action(t_philo *p, t_data *d, t_action act);
+long	get_time(void);
 void	*monitor_death(void *v);
 // input_check.c
 int		invalid_input(int argc, char *argv[]);

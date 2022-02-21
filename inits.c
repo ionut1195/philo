@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inits.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itomescu <itomescu@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: itomescu <itomescu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 13:59:24 by itomescu          #+#    #+#             */
-/*   Updated: 2022/02/14 13:31:01 by itomescu         ###   ########.fr       */
+/*   Updated: 2022/02/21 11:51:45 by itomescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	init_philos(t_data *d, long will_die)
 	{
 		d->philos[i].id = i;
 		d->philos[i].pt = d;
-		d->philos[i].is_full = false;
+		d->philos[i].is_full = FALSE;
 		d->philos[i].meals_eaten = 0;
 		d->philos[i].will_die = will_die;
 		if (i % 2 == 0)
@@ -84,20 +84,20 @@ void	init_mutexes(t_data *d)
 
 void	init_data(t_data *d, int argc, char *argv[])
 {
-	d->meals_param = false;
+	d->meals_param = FALSE;
 	d->total = ft_atoi(argv[1]);
 	d->t_die = ft_atoi(argv[2]);
 	d->t_eat = ft_atoi(argv[3]);
 	d->t_sleep = ft_atoi(argv[4]);
-	d->dead = false;
-	d->over = false;
+	d->dead = FALSE;
+	d->over = FALSE;
 	d->start_time = get_time();
 	d->current_time = get_time();
 	d->full_philos = 0;
 	if (argc == 6)
 	{
 		d->meals = ft_atoi(argv[5]);
-		d->meals_param = true;
+		d->meals_param = TRUE;
 	}
 	d->philos = malloc(sizeof(t_philo) * d->total);
 	d->forks = malloc(sizeof(t_mutex) * d->total);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itomescu <itomescu@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: itomescu <itomescu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 13:56:21 by itomescu          #+#    #+#             */
-/*   Updated: 2022/02/14 13:39:15 by itomescu         ###   ########.fr       */
+/*   Updated: 2022/02/21 11:51:51 by itomescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ void	print_action(t_philo *p, t_data *d, t_action act)
 	if (act == Dead)
 	{
 		pthread_mutex_lock(&d->dead_mtx);
-		d->over = true;
+		pthread_mutex_unlock(&d->forks[p->id].mtx);
+		d->over = TRUE;
 		pthread_mutex_unlock(&d->dead_mtx);
 	}
 	pthread_mutex_unlock(&d->print_mtx);

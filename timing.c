@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   timing.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itomescu <itomescu@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: itomescu <itomescu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 08:03:47 by itomescu          #+#    #+#             */
-/*   Updated: 2022/02/14 13:37:48 by itomescu         ###   ########.fr       */
+/*   Updated: 2022/02/21 20:51:21 by itomescu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	*keep_track(void *p)
 	t_data	*dt;
 
 	dt = (t_data *)p;
-	while (dt->over == false && dt->full_philos < dt->total)
+	while (dt->over == FALSE && dt->full_philos < dt->total)
 	{
 		dt->current_time = get_time();
 	}
@@ -58,7 +58,7 @@ void	*monitor_death(void *v)
 				&& !d->philos[id].is_full)
 				print_action(&d->philos[id], d, Dead);
 			if (d->full_philos == d->total)
-				d->over = true;
+				d->over = TRUE;
 		}
 		usleep(200);
 		if (d->over)

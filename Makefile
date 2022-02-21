@@ -1,7 +1,7 @@
 NAME = philo
 CC = gcc
 SRCS = atoi.c philo.c timing.c inits.c input_check.c utils.c
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -fsanitize=address
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
